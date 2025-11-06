@@ -1,9 +1,22 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { HeroCarousel } from "@/components/hero-carousel"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Wrench, Shield, DollarSign, Package, Wind, Droplets, Settings, Hammer, Thermometer } from "lucide-react"
 import Link from "next/link"
+
+function ProductLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href} className="group block py-3 border-b border-gray-200 hover:border-red-600 transition-colors">
+      <div className="flex items-center gap-2">
+        <span className="text-gray-600 group-hover:text-red-600 transition-colors">›</span>
+        <span className="text-red-600 font-semibold uppercase text-sm group-hover:text-red-700 transition-colors">
+          {children}
+        </span>
+      </div>
+    </Link>
+  )
+}
 
 export default function Home() {
   return (
@@ -11,100 +24,68 @@ export default function Home() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Deplus AC Supply
-            </h1>
-            <p className="text-2xl md:text-3xl mb-4">The best HVAC brands</p>
-            <p className="text-xl mb-8">Come and visit us. Delivery available.</p>
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/contacts">Contact Us</Link>
-            </Button>
-          </div>
-        </section>
+        {/* Hero Section with Carousel */}
+        <HeroCarousel />
 
-        {/* Feature Cards */}
-        <section className="py-16 bg-gray-50">
+        {/* CTA Cards Section */}
+        <section className="py-8 bg-white">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card>
-                <CardHeader>
-                  <Package className="size-10 text-blue-600 mb-2" />
-                  <CardTitle>One Stop Supply</CardTitle>
-                  <CardDescription>
-                    From a bolt to a complete AC
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Check all options to fit your needs.
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Warranty Support Card */}
+              <Link href="/contacts" className="group relative h-64 overflow-hidden rounded-lg">
+                <div className="absolute inset-0 bg-red-600/80 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600/90 to-red-700/80 z-10" />
+                <div className="relative z-20 h-full flex flex-col justify-between p-6 text-white">
+                  <div>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-2">WARRANTY SUPPORT</h3>
+                    <p className="text-lg">Do you need help with your AC?</p>
+                  </div>
+                  <div className="flex justify-end">
+                    <div className="w-12 h-12 bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
+                      <span className="text-white text-xl">→</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
 
-              <Card>
-                <CardHeader>
-                  <DollarSign className="size-10 text-red-600 mb-2" />
-                  <CardTitle>Hot Deals</CardTitle>
-                  <CardDescription>Monthly Special</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    High efficiency, low consumption, satisfaction Guarantee.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <Shield className="size-10 text-green-600 mb-2" />
-                  <CardTitle>Warranty Support</CardTitle>
-                  <CardDescription>Do you need help with your AC?</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    We provide comprehensive warranty support for all our products.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <DollarSign className="size-10 text-purple-600 mb-2" />
-                  <CardTitle>Financing Available</CardTitle>
-                  <CardDescription>No credit needed, No interest.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Apply NOW!
-                  </p>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href="/open-account">Apply Now</Link>
-                  </Button>
-                </CardContent>
-              </Card>
+              {/* Financing Available Card */}
+              <Link href="/open-account" className="group relative h-64 overflow-hidden rounded-lg">
+                <div className="absolute inset-0 bg-gray-800/80 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-800/90 to-gray-900/80 z-10" />
+                <div className="relative z-20 h-full flex flex-col justify-between p-6 text-white">
+                  <div>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-2">FINANCING AVAILABLE</h3>
+                    <p className="text-lg">No credit needed, No interest. Apply NOW!</p>
+                  </div>
+                  <div className="flex justify-end">
+                    <div className="w-12 h-12 bg-red-600 flex items-center justify-center group-hover:bg-red-700 transition-colors">
+                      <span className="text-white text-xl">→</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* About Section */}
-        <section className="py-16">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6">
-                Deplus AC Supply
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-red-600 mb-2">
+                DEPLUS AC SUPPLY
               </h2>
-              <h3 className="text-2xl font-semibold text-blue-600 mb-6">
-                Distribution Leaders in South Florida
+              <h3 className="text-3xl md:text-4xl font-normal text-red-600">
+                DISTRIBUTION LEADERS IN SOUTH<br />FLORIDA
               </h3>
-              <p className="text-lg text-gray-700 mb-8">
+            </div>
+            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700">
+              <p className="text-lg">
                 Deplus has long been committed to being one of South Florida&apos;s leading stocking distributors 
                 of HVAC equipment, parts and supplies. With over 100 different brands and over 25,000 different 
                 items in stock, we have all you need for your next job.
               </p>
-              <p className="text-lg text-gray-700 mb-8">
+              <p className="text-lg">
                 We pride ourselves in only working with the most reputable, trusted manufacturers in the Heating, 
                 Ventilation and Air Conditioning Industry.
               </p>
@@ -113,82 +94,33 @@ export default function Home() {
         </section>
 
         {/* Products Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12">OUR PRODUCTS</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              <Card className="text-center">
-                <CardHeader>
-                  <Wind className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Split systems</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Settings className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Mini split systems</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Wind className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Air Conditioning</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Package className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Package Units</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Droplets className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Air quality & germicidal</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Wind className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Air Distribution</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Wind className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Ventilation</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Thermometer className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Thermostats</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Wrench className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Installation Parts</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Hammer className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Hand Tools</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Package className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Testing Instruments</CardTitle>
-                </CardHeader>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Wrench className="size-8 text-blue-600 mx-auto mb-2" />
-                  <CardTitle className="text-sm">Cooper Tubing & Soldering</CardTitle>
-                </CardHeader>
-              </Card>
+            <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">OUR PRODUCTS</h2>
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Column 1 */}
+              <div className="space-y-0">
+                <ProductLink href="/products/split-systems">SPLIT SYSTEMS</ProductLink>
+                <ProductLink href="/products/mini-split">MINI SPLIT SYSTEMS</ProductLink>
+                <ProductLink href="/products/air-conditioning">AIR CONDITIONING</ProductLink>
+                <ProductLink href="/products/package-units">PACKAGE UNITS</ProductLink>
+              </div>
+
+              {/* Column 2 */}
+              <div className="space-y-0">
+                <ProductLink href="/products/air-quality">AIR QUALITY & GERMICIDAL</ProductLink>
+                <ProductLink href="/products/air-distribution">AIR DISTRIBUTION</ProductLink>
+                <ProductLink href="/products/ventilation">VENTILATION</ProductLink>
+                <ProductLink href="/products/thermostats">THERMOSTATS</ProductLink>
+              </div>
+
+              {/* Column 3 */}
+              <div className="space-y-0">
+                <ProductLink href="/products/installation-parts">INSTALLATION PARTS</ProductLink>
+                <ProductLink href="/products/hand-tools">HAND TOOLS</ProductLink>
+                <ProductLink href="/products/testing-instruments">TESTING INSTRUMENTS</ProductLink>
+                <ProductLink href="/products/cooper-tubing">COOPER TUBING & SOLDERING</ProductLink>
+              </div>
             </div>
           </div>
         </section>

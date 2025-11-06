@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -41,8 +42,15 @@ export function Header() {
       {/* Main navigation */}
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-blue-600">
-            Deplus AC Supply
+          <Link href="/" className="bg-white">
+            <Image
+              src="/logo.png"
+              alt="Deplus AC Supply"
+              width={200}
+              height={60}
+              className="h-auto"
+              priority
+            />
           </Link>
 
           <NavigationMenu>
