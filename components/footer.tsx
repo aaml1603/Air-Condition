@@ -1,9 +1,18 @@
+"use client"
+
 import Link from "next/link"
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { motion } from "framer-motion"
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <motion.footer 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="bg-gray-900 text-white"
+    >
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Contact Info */}
@@ -80,26 +89,52 @@ export function Footer() {
             <h3 className="text-xl font-bold mb-4">Follow Us</h3>
             <p className="mb-4">Follow us on social networks</p>
             <div className="flex gap-4">
-              <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="Facebook">
-                <Facebook className="size-6" />
-              </Link>
-              <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="Twitter">
-                <Twitter className="size-6" />
-              </Link>
-              <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="Instagram">
-                <Instagram className="size-6" />
-              </Link>
-              <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="LinkedIn">
-                <Linkedin className="size-6" />
-              </Link>
+              <motion.div
+                whileHover={{ scale: 1.2, y: -3 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="Facebook">
+                  <Facebook className="size-6" />
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.2, y: -3 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="Twitter">
+                  <Twitter className="size-6" />
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.2, y: -3 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="Instagram">
+                  <Instagram className="size-6" />
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.2, y: -3 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Link href="#" className="hover:text-blue-400 transition-colors" aria-label="LinkedIn">
+                  <Linkedin className="size-6" />
+                </Link>
+              </motion.div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400"
+        >
           <p>Deplus AC Supply 2021 © . Privacy Policy.</p>
-        </div>
+        </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

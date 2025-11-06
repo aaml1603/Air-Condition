@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,42 +17,66 @@ import { Button } from "@/components/ui/button"
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+    <motion.header 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="sticky top-0 z-50 w-full border-b bg-white shadow-sm"
+    >
       {/* Top bar with contact info */}
-      <div className="bg-blue-600 text-white py-2">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+        className="bg-blue-600 text-white py-2"
+      >
         <div className="container mx-auto px-4 flex items-center justify-between text-sm">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1">
+            <motion.span 
+              className="flex items-center gap-1"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
               <Phone className="size-4" />
               <strong>Need help?</strong>
               <Link href="tel:+1888337588" className="hover:underline">
                 +1 888-DEPLUS 8
               </Link>
-            </span>
+            </motion.span>
             <span className="hidden md:inline">
               Open: Mon - Fri 8am-5pm ; Sat 8am-1pm
             </span>
           </div>
-          <Link href="mailto:sales@deplus.us" className="flex items-center gap-1 hover:underline">
-            <Mail className="size-4" />
-            sales@deplus.us
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Link href="mailto:sales@deplus.us" className="flex items-center gap-1 hover:underline">
+              <Mail className="size-4" />
+              sales@deplus.us
+            </Link>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main navigation */}
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="bg-white">
-            <Image
-              src="/logo.png"
-              alt="Deplus AC Supply"
-              width={200}
-              height={60}
-              className="h-auto"
-              priority
-            />
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Link href="/" className="bg-white">
+              <Image
+                src="/logo.png"
+                alt="Deplus AC Supply"
+                width={200}
+                height={60}
+                className="h-auto"
+                priority
+              />
+            </Link>
+          </motion.div>
 
           <NavigationMenu>
             <NavigationMenuList className="gap-2 hidden md:flex">
@@ -174,6 +199,6 @@ export function Header() {
           </div>
         </div>
       </nav>
-    </header>
+    </motion.header>
   )
 }
